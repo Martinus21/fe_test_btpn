@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// COMPONENTS
+import AppShell from "./components/AppShell";
+
+// PAGES
+import HomePage from "./pages/home";
+import DetailContactPage from "./pages/contact";
+import AddContactPage from "./pages/contact/form/AddContact";
+import EditContactPage from "./pages/contact/form/EditContact";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppShell>
+        <main className="transition-all duration-500 ease-out lg:pb-0 mb-[66px] lg:mb-0 pb-[20px] relative mt-[66px]">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/detail/:id" element={<DetailContactPage />} />
+            <Route path="/add" element={<AddContactPage />} />
+            <Route path="/edit/:contactID" element={<EditContactPage />} />
+          </Routes>
+        </main>
+      </AppShell>
+    </Router>
   );
 }
 

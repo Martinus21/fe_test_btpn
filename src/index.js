@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// IMPORT STYLES
+import './styles/style.css';
+
+// IMPORT REDUX
+import ReduxState from './stores';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ReduxState>
+      <App />
+    </ReduxState>
   </React.StrictMode>
 );
 

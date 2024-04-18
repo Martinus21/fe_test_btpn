@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #7e869e;
+    --primaryRed: #ed1c23;
+    --background: #1b1b1b;
+    --secondaryBackground: #2a2a30;
+    --tertiaryBackground: #333846;
+    --base: #fff;
+    --caption: #7e869e;
+    --disable: #333846;
+    --separator: #7e869e;
+    --icon: #cecece;
+}
+
+body, html {
+    background-color: var(--background);
+    color: var(--base);
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+    height: 3px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    opacity: .8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--separator);
+    border-radius: 10px;
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+.bg-separator {
+    background: var(--separator);
+}
+.bg-background-default {
+    background-color: var(--background);
+    /* color: var(--base); */
+}
+
+/* COMPONENTS */
+/* @import url("@/components/headers/Header.modul.css"); */
+@import url("../components/NavigateMobile/NavigateMobile.modul.css");
+/* END COMPONENTS */
+
+/* UTILS */

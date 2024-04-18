@@ -1,3 +1,10 @@
+CRUD Test
+- [X] Responsive Mobile and Website
+- [X] Create Contact with API
+- [X] Read Contact with API
+- [X] Update Contact with API
+- [X] Delete Contact with API (400 Error Response from API)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
