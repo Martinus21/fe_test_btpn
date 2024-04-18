@@ -14,6 +14,7 @@ const AddContact = () => {
   const [age, setAge] = useState("");
   const [photo, setPhoto] = useState("");
   const [namePhoto, setNamePhoto] = useState("");
+  const [selectValue, setSelectValue] = useState("");
 
   const fileToBlob = (file) =>
     new Promise((resolve, reject) => {
@@ -45,6 +46,11 @@ const AddContact = () => {
       },
       navigate
     );
+  };
+
+  const onChangeSelect = (e) => {
+    const valueSelect = e.target.value;
+    setSelectValue(valueSelect);
   };
 
   return (
@@ -138,51 +144,97 @@ const AddContact = () => {
                 </div>
               </div>
             </div>
+
+            <div className="w-9/12 ml-1">
+              <div className="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1">
+                <div className="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default ">
+                  <label className="text-white text-[10px] lg:text-xs opacity-70 px-1  bg-background-default rounded-full ">
+                    Select Type Photo
+                  </label>
+                </div>
+                <div className="relative">
+                  <select
+                    id="inpun_photo"
+                    onChange={onChangeSelect}
+                    className="text-white p-3 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none"
+                  >
+                    <option selected disabled>
+                      Choose a type photo
+                    </option>
+                    <option value="URL">URL</option>
+                    <option value="UPLOAD">Upload</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
           {/* END AGE */}
 
           {/* UPLOAD PHOTO */}
           <div className="flex -mx-1 mt-5">
-            <div className="w-full">
-              <div className="flex items-center justify-center w-full">
-                <label
-                  htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500"
-                >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg
-                      className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 16"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                      />
-                    </svg>
-                    <p className="text-center">{namePhoto}</p>
-                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                      <span className="font-semibold">Click to upload</span> or
-                      drag and drop
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      SVG, PNG, JPG or GIF
-                    </p>
+            {selectValue === "URL" ? (
+              <div className="w-full">
+                <div className="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1">
+                  <div className="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default ">
+                    <label className="text-white text-[10px] lg:text-xs opacity-70 px-1  bg-background-default rounded-full ">
+                      URL Photo
+                    </label>
                   </div>
-                  <input
-                    id="dropzone-file"
-                    type="file"
-                    className="hidden"
-                    onChange={(e) => onChangePhoto(e.target.files[0] || null)}
-                  />
-                </label>
+                  <div className="relative">
+                    <input
+                      value={photo}
+                      onChange={(e) => setPhoto(e.target.value)}
+                      label="URL Photo"
+                      className="text-white p-3 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none"
+                      type="text"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : selectValue === "UPLOAD" ? (
+              <div className="w-full">
+                <div className="flex items-center justify-center w-full">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500"
+                  >
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <svg
+                        className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 16"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                        />
+                      </svg>
+                      <p className="text-center">{namePhoto}</p>
+                      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                        <span className="font-semibold">Click to upload</span>{" "}
+                        or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        SVG, PNG, JPG or GIF
+                      </p>
+                    </div>
+                    <input
+                      id="dropzone-file"
+                      type="file"
+                      className="hidden"
+                      onChange={(e) => onChangePhoto(e.target.files[0] || null)}
+                    />
+                  </label>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           {/* END UPLOAD PHOTO */}
 
